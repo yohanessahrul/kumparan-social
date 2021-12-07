@@ -8,7 +8,7 @@ export default function CreatePost(props) {
         <div className='row'>
           <div className='col-md-10'></div>
           <div className='col-md-2'>
-            <div class="d-grid gap-2">
+            <div className="d-grid gap-2">
               <button className='btn btn-primary btn-block'>Bagikan</button>
             </div>
           </div>

@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './Item.module.scss'
 import { connect } from 'react-redux'
 import Comments from '../../Modal/Comments/Comments'
 import EditPost from '../../Modal/EditPost/EditPost'
+import * as commentAction from '../../../redux/comment/CommentAction'
 
 function Item(props) {
+  const [activePostId, setActivePostId] = useState(null)
+
+  const displayComemmentsHandler = (postId) => {
+    setActivePostId(postId)
+    props.onGetCommentsByPostId(postId)
+  }
 
   let itemList = null
   if (props.data && props.data.length > 0) {
@@ -36,8 +43,9 @@ function Item(props) {
               className={classes.Comment}
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#modalComments">
-                Lihat Komentar
+              data-bs-target="#modalComments"
+              onClick={() => displayComemmentsHandler(item.id)}>
+                See All Comment
             </div>
           </div>
         </div>
@@ -48,7 +56,7 @@ function Item(props) {
   return (
     <div data-testid="post-item">
       {itemList}
-      <Comments />
+      <Comments postId={activePostId}/>
       <EditPost />
       
     </div>
@@ -57,8 +65,17 @@ function Item(props) {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.PostReducer.posts
+    commentsByPostId: state.CommentReducer.commentsByPostId,
+
   }
 }
 
-export default connect(mapStateToProps, null)(Item) 
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // onGetAllPost: () => dispatch(postAction.getAllPosts()),
+    onGetCommentsByPostId: (postId) => dispatch(commentAction.getCommentsByPostId(postId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item) 

@@ -12,6 +12,6 @@ code {
     monospace;
 }
 
-.dropdown-item {
+.dropdown-item, .input-group-text {
   cursor: pointer;
 }

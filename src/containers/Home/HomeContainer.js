@@ -25,6 +25,12 @@ function HomeContainer(props) {
   }, [])
 
   useEffect(() => {
+    if (props.commentsByPostId) {
+      console.log(`aha`)
+    }
+  }, [props.commentsByPostId])
+
+  useEffect(() => {
     if (props.posts) {
       setPosts(props.posts)
     }
@@ -59,7 +65,8 @@ function HomeContainer(props) {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.PostReducer.posts
+    posts: state.PostReducer.posts,
+    commentsByPostId: state.CommentReducer.commentsByPostId,
   }
 }
 

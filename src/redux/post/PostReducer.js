@@ -29,6 +29,7 @@ const reducer = (state = initialState, action) => {
     case 'SET_IS_FETCH_POSTS': return setIsFetchPosts(state, action)
     case 'SET_IS_ERROR_FETCH_POSTS': return setIsErrorFetchPosts(state, action)
     case 'SET_DETAIL_POST': return setDetailPost(state, action)
+    
     default: return state
   }
 }
