@@ -1,0 +1,36 @@
+
+  .Item {
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    // background: hotpink;
+    margin-bottom: 16px;
+    .Left {
+      width: 30px;
+      // background: yellow;
+      .Initial {
+        width: 30px;
+        height: 30px;
+        background: grey;
+        border-radius: 15px;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .Right {
+      width: calc(100% - (30px + 16px));
+      // background: orange;
+      // display: flex;
+      // align-items: center;
+      .Name {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .Comment {
+        font-size: 14px;
+      }
+    }
+  }

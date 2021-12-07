@@ -1,0 +1,70 @@
+.Wrapper {
+  width: 100%;
+  background: #FFFFFF;
+  margin-top: 23px;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  -webkit-box-shadow: 0 0 10px 3px #d1d9dd;
+  box-shadow: 0 0 10px 3px #d1d9dd;
+  .Opsi {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+  .Left {
+    width: 50px;
+    display: flex;
+    align-items: flex-start;
+    .Initial {
+      width: 50px;
+      height: 50px;
+      background: grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      border-radius: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+  }
+  .Right {
+    width: calc(100% - (50px + 16px));
+    .Name {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .Date {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .Content {
+      // background: cornsilk;
+      padding: 16px 16px 16px 0px;
+      border-radius: 8px;
+      .Title {
+        font-size: 14px;
+        font-weight: bold;  
+        margin-bottom: 8px;
+      }
+      .Body {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+    }
+    .Comment {
+      width: 100px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #4c92c0;
+    }
+  }
+  &:last-child {
+    margin-bottom: 23px;
+  }
+}
+

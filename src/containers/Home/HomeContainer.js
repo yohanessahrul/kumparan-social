@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import classes from './HomeContainer.module.scss'
 import { connect } from 'react-redux'
 import * as postAction from '../../redux/post/PostAction'
 import PostList from '../../components/PostList/PostList'
+import CreatePost from '../../components/CreatePost/CreatePost'
+import UserList from '../../components/UserList/UserList'
 
 function HomeContainer(props) {
   const [posts, setPosts] = useState(null)
@@ -28,8 +31,28 @@ function HomeContainer(props) {
   }, [props.posts])
 
   return (
-    <div data-testid="container">
-      <PostList data={posts}/>
+    <div data-testid="container" className={classes.Wrapper}>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-12'>
+            <div className={classes.Header}>
+              Kumparan Social
+            </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-md-8'>
+            <CreatePost />
+            <PostList data={posts}/>
+          </div>
+          <div className='col-md-4'>
+            <div className={classes.SideBar}>
+              <div className={classes.Heading}>Orang yang mungkin anda kenal</div>
+              <UserList />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

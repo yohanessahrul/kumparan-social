@@ -1,7 +1,8 @@
 const initialState = {
   comments: [],
   isFetchComments: false,
-  isErrorFetchComments: false
+  isErrorFetchComments: false,
+  commentsByPostId: [],
 }
 
 const aaaAaaa = () => { }
