@@ -1,11 +1,21 @@
 import { BASEAPI } from "../../constant/Api"
 
+const setNewPost = (data) => {
+  return {
+    type: 'SET_NEW_POST',
+    payload : {
+      data: data
+    }
+  }
+}
+
 export const createPost = (payload) => {
   return dispatch => {
     fetch(`${BASEAPI}/posts`, { method: 'POST' }, { body: payload })
       .then((response) => response.json())
       .then((data) => {
-        console.log(`create post`, data)
+        payload.id = data.id
+        dispatch(setNewPost(payload))
       })
   }
 }

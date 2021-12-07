@@ -38,25 +38,30 @@ function Comments(props) {
   }
 
   let commentList = null
-  if (allCommentsByPostId && allCommentsByPostId.length > 0) {
-    commentList = allCommentsByPostId.map((item, key) => {
-      return (
-        <div className={classes.Item} key={key} >
-          <div className={classes.Left}>
-            <div className={classes.Initial}>{item.email[0]}</div>
-          </div>
-          <div className={classes.Right}>
-            <div className={classes.Name}>
-              {item.email}
+  if (allCommentsByPostId) {
+    if (allCommentsByPostId.length > 0) {
+      commentList = allCommentsByPostId.map((item, key) => {
+        return (
+          <div className={classes.Item} key={key} >
+            <div className={classes.Left}>
+              <div className={classes.Initial}>{item.email[0]}</div>
             </div>
-            <div className={classes.Comment}>
-              {item.body}
+            <div className={classes.Right}>
+              <div className={classes.Name}>
+                {item.email}
+              </div>
+              <div className={classes.Comment}>
+                {item.body}
+              </div>
             </div>
           </div>
-        </div>
-      )
-    })
+        )
+      })
+    } else {
+      commentList = 'Belum ada komentar'
+    }
   }
+
   return (
     <div className="modal fade" id="modalComments" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">

@@ -13,10 +13,7 @@ const setCommentsByPostId = (state, action) => {
 }
 const setAddCommentByPostId = (state, action) => {
   let commentsByPostIdCp = state.commentsByPostId
-  console.log(`payload`, action.payload.data)
   commentsByPostIdCp.push(action.payload.data)
-  console.log(`commentsByPostIdCp`, commentsByPostIdCp)
-  // console.log(`he====>`, action.payload.data)
   return updateObject(state, { commentsByPostId: commentsByPostIdCp, changeListener: !state.changeListener })
 }
 

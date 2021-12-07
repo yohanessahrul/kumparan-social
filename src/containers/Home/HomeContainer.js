@@ -7,7 +7,6 @@ import CreatePost from '../../components/CreatePost/CreatePost'
 import UserList from '../../components/UserList/UserList'
 
 function HomeContainer(props) {
-  const [posts, setPosts] = useState(null)
 
   useEffect(() => {
     props.onGetAllPost()
@@ -24,17 +23,13 @@ function HomeContainer(props) {
       // eslint-disable-next-line
   }, [])
 
+
   useEffect(() => {
     if (props.commentsByPostId) {
       console.log(`aha`)
     }
   }, [props.commentsByPostId])
 
-  useEffect(() => {
-    if (props.posts) {
-      setPosts(props.posts)
-    }
-  }, [props.posts])
 
   return (
     <div data-testid="container" className={classes.Wrapper}>
@@ -49,7 +44,7 @@ function HomeContainer(props) {
         <div className='row'>
           <div className='col-md-8'>
             <CreatePost />
-            <PostList data={posts}/>
+            <PostList/>
           </div>
           <div className='col-md-4'>
             <div className={classes.SideBar}>
@@ -67,6 +62,7 @@ const mapStateToProps = (state) => {
   return {
     posts: state.PostReducer.posts,
     commentsByPostId: state.CommentReducer.commentsByPostId,
+    changeListener: state.PostReducer.changeListener,
   }
 }
 

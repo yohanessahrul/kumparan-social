@@ -6,7 +6,7 @@ function PostList(props) {
 
   return (
     <div data-testid='post-list'>
-      <Item data={props.data}/>
+      <Item />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './Item.module.scss'
 import { connect } from 'react-redux'
 import Comments from '../../Modal/Comments/Comments'
@@ -6,7 +6,18 @@ import EditPost from '../../Modal/EditPost/EditPost'
 import * as commentAction from '../../../redux/comment/CommentAction'
 
 function Item(props) {
+  const [posts, setPosts] = useState(null)
   const [activePostId, setActivePostId] = useState(null)
+
+  useEffect(() => {
+    if (props.posts) {
+      setPosts(props.posts)
+    }
+  }, [props.posts])
+
+  useEffect(() => {
+    setPosts(props.posts)
+  }, [props.changeListener])
 
   const displayComemmentsHandler = (postId) => {
     setActivePostId(postId)
@@ -14,8 +25,8 @@ function Item(props) {
   }
 
   let itemList = null
-  if (props.data && props.data.length > 0) {
-    itemList = props.data.map((item, key) => {
+  if (posts && posts.length > 0) {
+    itemList = posts.map((item, key) => {
       return (
         <div key={key} className={classes.Wrapper}>
           <div className={classes.Opsi}>
@@ -66,7 +77,8 @@ function Item(props) {
 const mapStateToProps = (state) => {
   return {
     commentsByPostId: state.CommentReducer.commentsByPostId,
-
+    posts: state.PostReducer.posts,
+    changeListener: state.PostReducer.changeListener,
   }
 }
 
