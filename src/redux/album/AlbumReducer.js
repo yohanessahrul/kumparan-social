@@ -1,18 +1,24 @@
+import { updateObject } from './../utility';
+
 const initialState = {
-  albums: ['haha', 'hihi', 'huhu', 'hoho'],
+  albums: [],
   isFetchAlbums: false,
-  isErrorFetchAlbums: false
+  isErrorFetchAlbums: false,
+  photosByAlbumId: [],
 }
 
-const aaaAaaa = () => { }
-const bbbBbbb = () => { }
-const cccCccc = () => { }
+const setAlbums = (state, action) => {
+  return updateObject(state, { albums: action.payload.data })
+}
+
+const setPhotosByAlbumId = (state, action) => {
+  return updateObject(state, { photosByAlbumId: action.payload.data })
+}
 
 const reducer = (state=initialState, action) => {
   switch (action.type) {
-    case 'aaaaa': return aaaAaaa(state, action)
-    case 'bbbbb': return bbbBbbb(state, action)
-    case 'ccccc': return cccCccc(state, action)
+    case 'SET_ALBUMS': return setAlbums(state, action)
+    case 'SET_PHOTOS_BY_ALBUM_ID': return setPhotosByAlbumId(state, action)
     default: return state
   }
 }

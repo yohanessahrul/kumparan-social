@@ -1,0 +1,20 @@
+.Wrapper {
+  .Item {
+    width: 100%;
+    padding: 16px;
+    background: #FFFFFF;
+    margin-bottom: 23px;
+    // border: thin solid black;
+      border: thin solid #FFFFFF;
+    border-radius: 8px;
+    a {
+      text-decoration: none;
+      color: #5c5c5c;
+    }
+    &:hover {
+      // background: #e7e7e7;
+      border: thin solid #adadad;
+      cursor: pointer;
+    }
+  }
+}

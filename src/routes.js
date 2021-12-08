@@ -1,5 +1,6 @@
 import HomeContainer from "./containers/Home/HomeContainer"
 import UserContainer from "./containers/User/UserContainer"
+import AlbumContainer from './containers/Album/AlbumContainer'
 
 const routes = [
   {
@@ -10,6 +11,11 @@ const routes = [
   {
     path: '/user/:id',
     component: <UserContainer />,
+    exact: true
+  },
+  {
+    path: '/user/:id/albums/:albumid',
+    component: <AlbumContainer />,
     exact: true
   }
 ]

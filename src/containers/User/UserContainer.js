@@ -3,15 +3,18 @@ import classes from './UserContainer.module.scss'
 import Header from '../../components/Header/Header'
 import * as postAction from '../../redux/post/PostAction'
 import * as userAction from '../../redux/user/UserAction'
+import * as albumAction from '../../redux/album/AlbumAction'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PostList from '../../components/PostList/PostList'
+import AlbumList from '../../components/AlbumList/AlbumList'
 
 function UserContainer(props) {
   let { id } = useParams()
   const [postsByUserId, setpostsByUserId] = useState(null)
   const [displayMode, setDisplayMode] = useState('posts')
   const [detailUser, setDetailUser] = useState(null)
+  const [albumsByUserId, setAlbumsByUserId] = useState(null)
 
   const displayChangeHandler = (value) => {
     setDisplayMode(value)
@@ -21,6 +24,7 @@ function UserContainer(props) {
     props.onGetAllPostByUserId(id)
     props.onGetAllUsers()
     props.onGetDetailUser(id)
+    props.onGetAlbumByUserId(id)
     // eslint-disable-next-line
   }, [])
 
@@ -29,6 +33,12 @@ function UserContainer(props) {
       setDetailUser(props.detailUser)
     }
   }, [props.detailUser])
+
+  useEffect(() => {
+    if (props.albums) {
+      setAlbumsByUserId(props.albums)
+    }
+  }, [props.albums])
 
   useEffect(() => {
     if (props.posts) {
@@ -73,7 +83,7 @@ function UserContainer(props) {
               </div>
             </div>
             <div className={classes.ContentBody}>
-              {displayMode === 'posts' ? <PostList data={postsByUserId}/> : <div>Albums</div> }
+              {displayMode === 'posts' ? <PostList data={postsByUserId}/> : <AlbumList data={albumsByUserId} /> }
             </div>
           </div>
         </div>
@@ -87,6 +97,7 @@ const mapStateToProps = (state) => {
   return {
     posts: state.PostReducer.posts,
     detailUser: state.UserReducer.detailUser,
+    albums: state.AlbumReducer.albums
   }
 }
 
@@ -94,7 +105,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onGetAllPostByUserId: (userId) => dispatch(postAction.getAllPostsByUserId(userId)),
     onGetAllUsers: () => dispatch(userAction.getAllUsers()),
-    onGetDetailUser: (userId) => dispatch(userAction.getDetailUser(userId))
+    onGetDetailUser: (userId) => dispatch(userAction.getDetailUser(userId)),
+    onGetAlbumByUserId: (userId) => dispatch(albumAction.getAlbumsByUserId(userId))
   }
 }
 
