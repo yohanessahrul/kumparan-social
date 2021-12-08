@@ -15,14 +15,12 @@ export const getCommentsByPostId = (postId) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setCommentsByPostId(data))
-        console.log(`comment by post id ${postId}`, data)
       })
       .catch((error) => console.log(`error =>> `, error))
   }
 }
 
 const setAddCommentByPostId = (data) => {
-  console.log(`asuk mari`)
   return {
     type: 'SET_ADD_COMMENT_BY_POST_ID',
     payload: {
@@ -37,7 +35,6 @@ export const addCommentByPostId = (postId, payload) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setAddCommentByPostId(payload))
-        console.log(`komentarin postId ${postId}`, data)
       })
       .catch((error) => console.log(`error =>> `, error))
   }

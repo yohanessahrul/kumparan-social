@@ -20,14 +20,48 @@ export const createPost = (payload) => {
   }
 }
 
+const setUpdatePost = (data) => {
+  return {
+    type: 'SET_UPDATE_POST',
+    payload: {
+      data: data
+    }
+  }
+}
+
+const setGlobalError = () => {
+  return {
+    type: 'SET_GLOBAL_ERROR'
+  }
+}
+
 export const updatePost = (payload, id) => {
   return dispatch => {
     fetch(`${BASEAPI}/posts/${id}`, { method: 'PUT' }, { body: payload })
       .then((response) => response.json())
       .then((data) => {
-        console.log(`updated post`, data)
+        payload.id = data.id
+        dispatch(setUpdatePost(payload))
       })
-      .catch((error) => console.log(`error =>> `, error))
+      .catch((error) => {
+        console.log(`error ==>`, error)
+        dispatch(setGlobalError())
+      })
+  }
+}
+
+export const setIsSuccessDeletePost = () => {
+  return {
+    type: 'SET_IS_SUCCESS_DELETE_POST'
+  }
+}
+
+export const setDeletePost = (id) => {
+  return {
+    type: 'SET_DELETE_POST',
+    payload: {
+      id: id
+    }
   }
 }
 
@@ -36,9 +70,21 @@ export const deletedPost = (id) => {
     fetch(`${BASEAPI}/posts/${id}`, { method: 'DELETE' })
       .then((response) => response.json())
       .then((data) => {
-        console.log(`deleted post`, data)
+        dispatch(setDeletePost(id))
       })
-      .catch((error) => console.log(`error =>> `, error))
+      .catch((error) => {
+        console.log(`error ==>`, error)
+        dispatch(setGlobalError())
+      })
+  }
+}
+
+export const setDetailPostForUpdate = (data) => {
+  return {
+    type: 'SET_DETAIL_POST_FOR_UPDATE',
+    payload: {
+      data: data
+    }
   }
 }
 
@@ -51,15 +97,17 @@ const setDetailPost = (data) => {
   }
 }
 
-export const getDetailPost = (id) => {
+export const getDetailPost = (id, item) => {
   return dispatch => {
     fetch(`${BASEAPI}/posts/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(`data`, data)
         dispatch(setDetailPost(data))
       })
-      .catch((error) => console.log(`error =>> `, error))
+      .catch((error) => {
+        console.log(`error ==>`, error)
+        dispatch(setGlobalError())
+      })
   }
 }
 
@@ -99,8 +147,39 @@ export const getAllPosts = () => {
         dispatch(setPosts(data))
       })
       .catch((error) => {
-        console.log(`error => `, error)
         dispatch(setIsErrorFetchPosts(true))
       })
+  }
+}
+
+export const getAllPostsByUserId = (userId) => {
+  return dispatch => {
+    dispatch(setIsFetchPosts(true))
+    fetch(`${BASEAPI}/posts?userId=${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setPosts(data))
+      })
+      .catch((error) => {
+        dispatch(setIsErrorFetchPosts(true))
+      })
+  }
+}
+
+export const setIsSuccessPost = () => {
+  return {
+    type: 'SET_IS_SUCCESS_POST',
+    payload: {
+      value: false
+    }
+  }
+}
+
+export const setIsSuccessUpdatePost = () => {
+  return {
+    type: 'SET_IS_SUCCESS_UPDATE_POST',
+    payload: {
+      value: false
+    }
   }
 }

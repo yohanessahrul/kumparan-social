@@ -1,0 +1,64 @@
+.Wrapper {
+  width: 100%;
+  background: #dddddd;
+  min-height: 100vh;
+  .Header {
+    width: 100%;
+    height: 100px;
+    background: hotpink;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  .SideBar {
+    width: 100%;
+    background: #FFFFFF;
+    padding: 16px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px 3px #d1d9dd;
+    box-shadow: 0 0 10px 3px #d1d9dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Heading {
+      font-weight: bold;
+      margin-bottom: 23px;
+    }
+    .Initial {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      background: grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    .Name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .Email {
+      font-size: 14px;
+      margin-bottom: 100px;
+
+    }
+  }
+  .ContentTab {
+    width: 100%;
+    background: #FFFFFF;
+    padding: 16px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px 3px #d1d9dd;
+    box-shadow: 0 0 10px 3px #d1d9dd;
+
+  }
+  .ContentBody {
+    margin-top: 32px;
+  }
+}

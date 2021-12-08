@@ -19,7 +19,7 @@ function Comments(props) {
     setComment('')
     setAllCommentsByPostId(props.commentsByPostId)
     executeScroll()
-  }, [props.changeListener])
+  }, [props.changeListener, props.commentsByPostId])
 
   const onChangeHandler = (e) => {
     setComment(e.target.value)

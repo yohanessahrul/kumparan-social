@@ -2,6 +2,8 @@ import { render } from '../test-utils'
 import { screen } from '@testing-library/react'
 import HomeContainer from '../containers/Home/HomeContainer'
 
+window.HTMLElement.prototype.scrollIntoView = jest.fn()
+
 describe('Test homepage components', () => {
   test('should contain container attr', async () => {
     render(<HomeContainer />)
